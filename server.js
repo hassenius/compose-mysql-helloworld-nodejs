@@ -61,10 +61,10 @@ const appEnv = cfenv.getAppEnv(appEnvOpts);
 let services = appEnv.services;
 
 // The services object is a map named by service so we extract the one for PostgreSQL
-let mysql_services = services["compose-for-mysql"];
+let mysql_services = services["mariadb"];
 
 // This check ensures there is a services for MySQL databases
-assert(!util.isUndefined(mysql_services), "Must be bound to compose-for-mysql services");
+assert(!util.isUndefined(mysql_services), "Must be bound to mariadb services");
 
 // We now take the first bound MongoDB service and extract it's credentials object
 let credentials = mysql_services[0].credentials;
