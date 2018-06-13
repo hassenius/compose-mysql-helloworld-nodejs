@@ -4,7 +4,7 @@ applications:
   memory: 512M
   disk_quota: 1024M
   instances: 1
-  routes:
-    - route: nodejs-mariadb.bluemix.chechu.com
-  services:
-    - fabio-mariadb
+  #routes:
+  #  - route: nodejs-mariadb.mybluemix.net
+  #services:
+  #  - mariadb-instance
