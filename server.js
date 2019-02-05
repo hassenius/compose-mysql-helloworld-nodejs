@@ -50,7 +50,7 @@ let vcapLocal;
 try {
   vcapLocal = require('./vcap-local.json');
   console.log("Loaded local VCAP");
-} catch (e) { 
+} catch (e) {
     // console.log(e)
 }
 
@@ -61,13 +61,14 @@ const appEnv = cfenv.getAppEnv(appEnvOpts);
 let services = appEnv.services;
 
 // The services object is a map named by service so we extract the one for PostgreSQL
-let mysql_services = services["mariadb"];
+let mysql_service = appEnv.getService(/mariadb.*/);
+console.log(mysql_service)
 
 // This check ensures there is a services for MySQL databases
-assert(!util.isUndefined(mysql_services), "Must be bound to mariadb services");
+assert(!util.isUndefined(mysql_service), "Must be bound to mariadb services");
 
 // We now take the first bound MongoDB service and extract it's credentials object
-let credentials = mysql_services[0].credentials;
+let credentials = mysql_service.credentials;
 
 let connectionString = credentials.uri;
 
